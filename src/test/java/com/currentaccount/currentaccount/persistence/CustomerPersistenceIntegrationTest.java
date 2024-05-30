@@ -1,4 +1,4 @@
-package com.currentaccount.currentaccount.service.persistence;
+package com.currentaccount.currentaccount.persistence;
 
 import com.currentaccount.currentaccount.model.Customer;
 import com.currentaccount.currentaccount.repository.CustomerRepository;
