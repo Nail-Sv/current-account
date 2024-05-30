@@ -7,7 +7,7 @@ spring:
     username: 'sa'
 
   liquibase:
-    change-log: 'db/liquibase-changeLog.xml'
+    change-log: '/db/liquibase-changeLog.xml'
   jpa:
     defer-datasource-initialization: false
     show-sql: true
