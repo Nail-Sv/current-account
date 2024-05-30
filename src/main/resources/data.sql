@@ -1,4 +1,6 @@
-
+truncate table customer;
+truncate table account;
+truncate table transaction;
 -- Insert individual customers into the customer table
 
 INSERT INTO customer (customer_id, name, surname, balance) VALUES
