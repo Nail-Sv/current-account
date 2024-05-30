@@ -20,3 +20,13 @@ jobs:
         run: mvn -B package --file pom.xml
       - name: Test
         run: mvn -B clean test --file pom.xml
+
+  pull-request:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: pull-request
+        run:  gh pr create -B dev -H nail --title 'Merge nail into dev' --body 'Created by Github action'
+        env:
+          GITHUB_TOKEN: ${{ secrets.DEV_GITHUB_TOKEN }}
