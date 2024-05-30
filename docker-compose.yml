@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  backend:
+    container_name: current-account-app
+    build: ./
+    restart: always
+    ports:
+      - '8080:8080'
+    networks:
+      - current-account
+
+networks:
+  current-account:
+    driver: bridge
