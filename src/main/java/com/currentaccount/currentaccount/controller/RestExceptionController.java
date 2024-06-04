@@ -19,6 +19,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.HttpMediaTypeNotAcceptableException;
 import org.springframework.web.HttpMediaTypeNotSupportedException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
@@ -27,6 +28,7 @@ import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 import static org.springframework.http.HttpStatus.*;
@@ -85,6 +87,19 @@ public class RestExceptionController {
         logError(request, e);
 
         ErrorDTO errorDTO = new ErrorDTO(e.getMessage(), null, null, getTraceId().orElse(null));
+
+        return buildErrorResponseEntity(new ErrorGroupDTO(Collections.singletonList(errorDTO)), BAD_REQUEST);
+    }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<ErrorGroupDTO> handleMethodArgumentNotValidException(
+            @NonNull WebRequest request,
+            @NonNull MethodArgumentNotValidException e) {
+
+        logError(request, e);
+
+        ErrorDTO errorDTO = new ErrorDTO(Objects.requireNonNull(e.getFieldError())
+                .getDefaultMessage(), null, null, getTraceId().orElse(null));
 
         return buildErrorResponseEntity(new ErrorGroupDTO(Collections.singletonList(errorDTO)), BAD_REQUEST);
     }

@@ -1,6 +1,7 @@
 package com.currentaccount.currentaccount.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.Digits;
 
 import java.util.UUID;
 
@@ -16,6 +17,7 @@ public record InitialRequestDTO(
                 description = "The initial credit amount for the new account",
                 example = "150.0"
         )
+        @Digits(integer = 3, fraction = 2)
         double initialCredit
 ) {
 }

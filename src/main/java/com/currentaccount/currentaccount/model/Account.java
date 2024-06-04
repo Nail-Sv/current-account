@@ -39,7 +39,6 @@ public class Account implements Serializable {
     @OneToMany(mappedBy = "account")
     private List<Transaction> transactions;
 
-    @NotBlank
     private double balance;
 
     @Override
