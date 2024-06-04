@@ -35,7 +35,6 @@ public class Customer implements Serializable {
     @NotBlank
     private String surname;
 
-    @NotBlank
     private double balance;
 
     @JsonManagedReference

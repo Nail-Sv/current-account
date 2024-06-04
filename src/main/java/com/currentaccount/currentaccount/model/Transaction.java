@@ -2,7 +2,6 @@ package com.currentaccount.currentaccount.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
 import java.io.Serial;
@@ -27,7 +26,6 @@ public class Transaction implements Serializable {
     @Column(name = "transaction_id")
     private UUID id;
 
-    @NotBlank
     private double amount;
 
     private LocalDateTime created_at;
